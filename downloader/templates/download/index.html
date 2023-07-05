@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download YouTube Video</title>
+    {% block site_css %}
+    <link
+        rel="stylesheet"
+        href="{% static 'downloader/css/index.css' %}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% endblock site_css %}
+</head>
+<body>
+    <nav class="text-center flex justify-center">
+        <h1 class="lg:text-4xl text-6xl font-bold my-5">Download YouTube Video</h1>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="w-full lg:w-4/12 mx-auto">
+                <form method="POST" action="{% url 'download_youtube_video' %}">
+                    {% csrf_token %}
+                    <label for="link" class="text-5xl lg:text-2xl">YouTube Video URL:</label>
+                    <input type="text" name="link" id="link" class="border p-8 text-4xl lg:text-2xl lg:p-3 my-6 rounded-full w-full lg:mt-3 focus:outline-none focus:ring-2 focus:ring-blue-500 w-auto text-black" required>
+                    <br>
+                    <label for="download_type" class="text-5xl lg:text-2xl">Download Type:</label>
+                    <select name="download_type" id="download_type" class="text-4xl lg:text-2xl text-black p-8 lg:p-2 rounded-full mt-3" required>
+                        <option value="1" class="text-lg">MP3</option>
+                        <option value="2" class="text-lg">Video</option>
+                    </select>
+                    <br>
+                    <input class="mt-5 md:mt-3 text-5xl lg:text-2xl bg-blue-800 hover:bg-blue-900 transition ease-in-out duration-500 cursor-pointer text-white rounded-full p-8 lg:p-3" type="submit" value="Download" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="w-100 bg-blue-900">
+        <div class="flex justify-center py-3">
+            <a class="text-white my-auto" target="_blank" rel="noferrer" href="https://github.com/Pseudoman21/beshie.co">
+            <span class="text-white my-auto" id="year"></span>
+            </a>
+        </div>
+    </footer>
+    <script src="{% static 'downloader/scripts/index.js' %}" ></script>
+</body>
+</html>
